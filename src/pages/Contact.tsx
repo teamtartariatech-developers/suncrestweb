@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MapPin, Phone, Mail, Clock, Calendar, CheckCircle } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 import AppointmentBooking from '../components/AppointmentBooking';
+import { useLocation } from 'react-router-dom';
 
 const Contact: React.FC = () => {
+
+  const location = useLocation(); // ⬅️ add this
+
+  useEffect(() => {
+    // If there's a hash in the URL (e.g., #appointment-booking), scroll to it
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const el = document.getElementById(id);
+      if (el) {
+        // timeout ensures the DOM is painted before we scroll
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 0);
+      }
+    }
+  }, [location]);
+
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
@@ -110,7 +128,7 @@ const Contact: React.FC = () => {
       </section>
 
       {/* Appointment Booking & Contact Form */}
-      <section className="section-padding bg-gray-50">
+      <section id="appointment-booking" className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Appointment Booking */}

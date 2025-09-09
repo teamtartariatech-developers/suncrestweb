@@ -4,7 +4,7 @@ import { TrendingUp, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-primary-900 text-white">
+    <footer className="text-white footer-deep-blue"> 
       <div className="container-custom section-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
@@ -23,20 +23,22 @@ const Footer: React.FC = () => {
               We help individuals and businesses achieve their financial goals through 
               expert guidance and personalized solutions.
             </p>
+
             <div className="flex space-x-4">
-              <a href="#" className="text-primary-300 hover:text-white transition-colors duration-200">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-primary-300 hover:text-white transition-colors duration-200">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-primary-300 hover:text-white transition-colors duration-200">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-primary-300 hover:text-white transition-colors duration-200">
-                <Instagram className="h-5 w-5" />
-              </a>
-            </div>
+          <a href="#" className="text-[#F97316] hover:text-[#FB923C] transition-colors duration-200">
+            <Facebook className="h-5 w-5" />
+          </a>
+          <a href="#" className="text-[#F97316] hover:text-[#FB923C] transition-colors duration-200">
+            <Twitter className="h-5 w-5" />
+          </a>
+          <a href="#" className="text-[#F97316] hover:text-[#FB923C] transition-colors duration-200">
+            <Linkedin className="h-5 w-5" />
+          </a>
+          <a href="#" className="text-[#F97316] hover:text-[#FB923C] transition-colors duration-200">
+            <Instagram className="h-5 w-5" />
+          </a>
+          </div>
+
           </div>
 
           {/* Quick Links */}

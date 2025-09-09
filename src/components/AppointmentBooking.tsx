@@ -4,6 +4,7 @@ import { Calendar, Clock, CheckCircle, User, Mail, Phone } from 'lucide-react';
 import { format, addDays, startOfWeek, addWeeks } from 'date-fns';
 
 interface AppointmentFormData {
+
   name: string;
   email: string;
   phone: string;
@@ -11,6 +12,7 @@ interface AppointmentFormData {
   date: string;
   time: string;
   notes: string;
+  
 }
 
 const AppointmentBooking: React.FC = () => {
@@ -93,6 +95,8 @@ const AppointmentBooking: React.FC = () => {
         <p className="text-sm text-gray-500">
           You'll receive a calendar invitation and reminder 24 hours before your appointment.
         </p>
+
+
       </div>
     );
   }
@@ -177,8 +181,8 @@ const AppointmentBooking: React.FC = () => {
           {errors.service && <p className="mt-1 text-sm text-red-600">{errors.service.message}</p>}
         </div>
 
-        {/* Date Selection */}
-        <div>
+        {/* Date Selection  */}
+         {/* <div>
           <div className="flex items-center space-x-2 mb-3">
             <Calendar className="h-5 w-5 text-primary-600" />
             <label className="text-sm font-medium text-gray-700">Select Date *</label>
@@ -199,7 +203,7 @@ const AppointmentBooking: React.FC = () => {
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Time Selection */}
         {selectedDate && (
@@ -244,7 +248,8 @@ const AppointmentBooking: React.FC = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={!selectedDate || !selectedTime}
+          onClick={() => window.open("https://calendar.app.google/2PgyNAKa7PGH9ySk8", "_blank") }
+          // disabled={!selectedDate || !selectedTime}
           className="btn-accent w-full flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Calendar className="h-5 w-5" />

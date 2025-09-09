@@ -6,11 +6,11 @@ const Home: React.FC = () => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-700 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 to-transparent"></div>
+      <section className="relative footer-deep-blue text-white overflow-hidden">
+        {/* <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 to-transparent"></div> */}
         
-        <div className="relative container-custom section-padding">
+        <div className="relative container-custom section-padding ">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
             <div className="animate-slide-up">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
@@ -164,57 +164,67 @@ const Home: React.FC = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="animate-slide-up">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
-                Why Choose
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600"> Suncrest Finance?</span>
-              </h2>
-              
-              <div className="space-y-6">
-                {[
-                  {
-                    title: 'Expert Guidance',
-                    description: 'Certified financial advisors with decades of combined experience in wealth management.',
-                  },
-                  {
-                    title: 'Personalized Solutions',
-                    description: 'Tailored financial strategies that align with your unique goals and circumstances.',
-                  },
-                  {
-                    title: 'Transparent Approach',
-                    description: 'Clear communication, no hidden fees, and complete transparency in all our services.',
-                  },
-                  {
-                    title: 'Proven Track Record',
-                    description: 'Consistent results and satisfied clients who trust us with their financial future.',
-                  },
-                ].map((feature, index) => (
-                  <div key={feature.title} className="flex items-start space-x-4">
-                    <div className="bg-secondary-100 p-2 rounded-lg flex-shrink-0">
-                      <CheckCircle className="h-6 w-6 text-secondary-600" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h4>
-                      <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-                    </div>
-                  </div>
-                ))}
+      <section className="section-padding bg-finance-green text-white">
+  <div className="container-custom">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="animate-slide-up">
+        <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+          Why Choose{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-secondary-300 drop-shadow">
+            Suncrest Finance?
+          </span>
+        </h2>
+
+        <div className="space-y-6">
+          {[
+            {
+              title: "Expert Guidance",
+              description:
+                "Certified financial advisors with decades of combined experience in wealth management.",
+            },
+            {
+              title: "Personalized Solutions",
+              description:
+                "Tailored financial strategies that align with your unique goals and circumstances.",
+            },
+            {
+              title: "Transparent Approach",
+              description:
+                "Clear communication, no hidden fees, and complete transparency in all our services.",
+            },
+            {
+              title: "Proven Track Record",
+              description:
+                "Consistent results and satisfied clients who trust us with their financial future.",
+            },
+          ].map((feature) => (
+            <div key={feature.title} className="flex items-start space-x-4">
+              <div className="bg-white/10 p-2 rounded-lg flex-shrink-0 ring-1 ring-white/20">
+                <CheckCircle className="h-6 w-6 text-[#F97316]" />
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-1">
+                  {feature.title}
+                </h4>
+                <p className="text-white/80 leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
             </div>
-
-            <div className="animate-slide-up" style={{ animationDelay: '0.3s' }}>
-              <img 
-                src="https://images.pexels.com/photos/7564883/pexels-photo-7564883.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Professional Financial Team" 
-                className="rounded-2xl shadow-2xl w-full h-[600px] object-cover"
-              />
-            </div>
-          </div>
+          ))}
         </div>
-      </section>
+      </div>
+
+      <div className="animate-slide-up" style={{ animationDelay: "0.3s" }}>
+        <img
+          src="assets/img1.webp"
+          alt="Professional Financial Team"
+          className="rounded-2xl shadow-2xl w-full h-[400px] md:h-[600px] object-cover ring-1 ring-white/10"
+        />
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Testimonials */}
       <section className="section-padding bg-gray-50">
@@ -282,7 +292,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding gradient-bg text-white">
+      <section className="section-padding bg-finance-green text-white">
         <div className="container-custom text-center">
           <div className="max-w-4xl mx-auto animate-slide-up">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
