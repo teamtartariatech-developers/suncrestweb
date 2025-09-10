@@ -58,11 +58,11 @@ const AppointmentBooking: React.FC = () => {
   const availableDates = generateAvailableDates();
 
   const onSubmit = async (data: AppointmentFormData) => {
-    const appointmentData = {
-      ...data,
-      date: selectedDate,
-      time: selectedTime,
-    };
+  const appointmentData = {
+    ...data,
+    date: selectedDate,
+    time: selectedTime,
+  };
     
     // Here you would typically:
     // 1. Send data to your backend
@@ -77,6 +77,8 @@ const AppointmentBooking: React.FC = () => {
     reset();
     setSelectedDate('');
     setSelectedTime('');
+
+      
     
     // Reset success message after 5 seconds
     setTimeout(() => setIsSubmitted(false), 5000);
@@ -182,7 +184,7 @@ const AppointmentBooking: React.FC = () => {
         </div>
 
         {/* Date Selection  */}
-         {/* <div>
+         <div>
           <div className="flex items-center space-x-2 mb-3">
             <Calendar className="h-5 w-5 text-primary-600" />
             <label className="text-sm font-medium text-gray-700">Select Date *</label>
@@ -203,7 +205,7 @@ const AppointmentBooking: React.FC = () => {
               </button>
             ))}
           </div>
-        </div> */}
+        </div>
 
         {/* Time Selection */}
         {selectedDate && (
@@ -248,8 +250,8 @@ const AppointmentBooking: React.FC = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          onClick={() => window.open("https://calendar.app.google/2PgyNAKa7PGH9ySk8", "_blank") }
-          // disabled={!selectedDate || !selectedTime}
+          
+          disabled={!selectedDate || !selectedTime}
           className="btn-accent w-full flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Calendar className="h-5 w-5" />

@@ -169,14 +169,14 @@ const Contact: React.FC = () => {
       </section>
 
       {/* Map Section */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-finance-green">
         <div className="container-custom">
           <div className="text-center mb-12 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Find
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600"> Our Office</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-green-400"> Our Office</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed">
               Conveniently located in the heart of the financial district, 
               our office is easily accessible by public transportation and car.
             </p>

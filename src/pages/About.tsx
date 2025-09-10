@@ -6,7 +6,7 @@ const About: React.FC = () => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="gradient-bg text-white section-padding">
+      <section className="bg-finance-green text-white section-padding">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center animate-slide-up">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -123,14 +123,14 @@ const About: React.FC = () => {
       </section>
 
       {/* Team Section */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-finance-green">
         <div className="container-custom">
           <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Meet Our
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600"> Expert Team</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-green-400"> Expert Team</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed">
               Our team of certified financial professionals brings decades of combined 
               experience to help you achieve your financial goals.
             </p>
@@ -286,7 +286,7 @@ const About: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding gradient-bg text-white">
+      <section className="section-padding bg-finance-green text-white">
         <div className="container-custom text-center">
           <div className="max-w-4xl mx-auto animate-slide-up">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
