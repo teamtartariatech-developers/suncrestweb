@@ -32,28 +32,17 @@ const About: React.FC = () => {
               </h2>
               <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  Founded in 2008, Suncrest Finance was born from a simple mission: to make 
-                  expert financial guidance accessible to everyone. Our founders, seasoned 
-                  financial professionals, recognized that many people struggled to navigate 
-                  the complex world of personal and business finance.
+                  With 8 years of hands-on experience across Insurance, Equity, and Mutual Funds, we help individuals and businesses make confident, goal-aligned financial decisions. Led by a B.Com graduate and CFP® (Certified Financial Planner) with NISM credentials, our practice combines rigorous planning with disciplined execution.
                 </p>
                 <p>
-                  What started as a small consulting practice has grown into a comprehensive 
-                  financial services firm, but our core values remain unchanged. We believe 
-                  in building long-term relationships with our clients, providing transparent 
-                  advice, and helping people achieve their financial dreams.
-                </p>
-                <p>
-                  Today, we're proud to serve over 500 clients, managing more than $50 million 
-                  in assets, and maintaining a 98% client satisfaction rate. Our success is 
-                  measured not just in numbers, but in the peace of mind we bring to our clients.
+                  Today, we serve 450+ active clients in insurance services and manage/advice on portfolios totaling ₹10+ crore. Our specialization lies in comprehensive financial planning and end-to-end portfolio management—optimizing insurance cover, building resilient mutual fund allocations, and aligning investments to life goals. Transparent, research-driven, and client-first, we partner with you to protect wealth, grow it sustainably, and stay on track year after year.
                 </p>
               </div>
             </div>
 
             <div className="animate-slide-up" style={{ animationDelay: '0.3s' }}>
               <img 
-                src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                src="/assets/owner.jpg" 
                 alt="Our Office" 
                 className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
               />
@@ -122,64 +111,6 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="section-padding bg-finance-green">
-        <div className="container-custom">
-          <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Meet Our
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-green-400"> Expert Team</span>
-            </h2>
-            <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed">
-              Our team of certified financial professionals brings decades of combined 
-              experience to help you achieve your financial goals.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: 'Robert Johnson',
-                role: 'Founder & Senior Financial Advisor',
-                credentials: 'CFP®, CFA',
-                image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400',
-                bio: '20+ years of experience in financial planning and investment management. Specializes in retirement and estate planning.',
-              },
-              {
-                name: 'Jennifer Martinez',
-                role: 'Investment Strategist',
-                credentials: 'CFA, MBA',
-                image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400',
-                bio: 'Expert in portfolio management and risk assessment. Former investment banker with 15 years of market experience.',
-              },
-              {
-                name: 'David Chen',
-                role: 'Tax & Business Advisor',
-                credentials: 'CPA, CFP®',
-                image: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=400',
-                bio: 'Specializes in tax planning and business finance. Helps entrepreneurs and small businesses optimize their financial strategies.',
-              },
-            ].map((member, index) => (
-              <div 
-                key={member.name}
-                className="card p-8 text-center animate-slide-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <img 
-                  src={member.image} 
-                  alt={member.name}
-                  className="w-32 h-32 rounded-full object-cover mx-auto mb-6 border-4 border-primary-100"
-                />
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                <p className="text-primary-600 font-medium mb-1">{member.role}</p>
-                <p className="text-secondary-600 text-sm font-medium mb-4">{member.credentials}</p>
-                <p className="text-gray-600 leading-relaxed">{member.bio}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Stats Section */}
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
@@ -196,17 +127,17 @@ const About: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                number: '500+',
+                number: '450+',
                 label: 'Happy Clients',
                 description: 'Individuals and businesses trust us with their financial future',
               },
               {
-                number: '$50M+',
+                number: '₹10Cr+',
                 label: 'Assets Under Management',
                 description: 'We manage and protect millions in client assets',
               },
               {
-                number: '15+',
+                number: '8+',
                 label: 'Years of Experience',
                 description: 'Proven track record of financial expertise and guidance',
               },

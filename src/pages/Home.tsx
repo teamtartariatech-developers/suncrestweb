@@ -1,85 +1,90 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, TrendingUp, Users, Award, Star, Calendar, CheckCircle } from 'lucide-react';
+import Stats from './Stats';
 
 const Home: React.FC = () => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="relative footer-deep-blue text-white overflow-hidden">
-        {/* <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 to-transparent"></div> */}
-        
-        <div className="relative container-custom section-padding ">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-            <div className="animate-slide-up">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Your Financial
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-secondary-300 to-accent-300">
-                  Success Partner
-                </span>
-              </h1>
-              <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
-                Expert financial consulting services tailored to help you achieve your goals. 
-                From investment planning to business finance, we're here to guide your journey.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <Link to="/contact" className="btn-accent text-lg px-8 py-4 flex items-center justify-center space-x-2">
-                  <Calendar className="h-5 w-5" />
-                  <span>Book Free Consultation</span>
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-                <Link to="/services" className="btn-outline text-lg px-8 py-4 flex items-center justify-center space-x-2 border-white text-white hover:bg-white hover:text-primary-900">
-                  <span>Our Services</span>
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-              </div>
+      <section 
+      id = 'hero'
+      className="relative text-white overflow-hidden">
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-8 pt-8 border-t border-primary-700">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-secondary-300 mb-2">500+</div>
-                  <div className="text-primary-200">Happy Clients</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-secondary-300 mb-2">$50M+</div>
-                  <div className="text-primary-200">Assets Managed</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-secondary-300 mb-2">15+</div>
-                  <div className="text-primary-200">Years Experience</div>
-                </div>
-              </div>
-            </div>
+  {/* Background Video */}
+  <video
+    className="absolute inset-0 w-full h-full object-cover"
+    src="https://v1.pinimg.com/videos/mc/720p/78/f6/c8/78f6c862362e64768d0f156db81e6d1b.mp4"
+    autoPlay
+    loop
+    muted
+    playsInline
+  ></video>
 
-            {/* Hero Image */}
-            <div className="relative animate-slide-up" style={{ animationDelay: '0.3s' }}>
-              <div className="relative">
-                <img 
-                  src="https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  alt="Financial Planning Meeting" 
-                  className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-900/50 to-transparent rounded-2xl"></div>
-                
-                {/* Floating Card */}
-                <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-2xl animate-bounce-subtle">
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-secondary-100 p-3 rounded-lg">
-                      <TrendingUp className="h-8 w-8 text-secondary-600" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-gray-900">+23.5%</div>
-                      <div className="text-gray-600">Portfolio Growth</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  {/* Optional overlays for readability */}
+  <div className="absolute inset-0 bg-black/40"></div>
+  <div className="absolute inset-0 bg-gradient-to-r from-primary-900/80 to-transparent"></div>
+
+  <div className="relative container-custom section-padding">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+      <div className="animate-slide-up">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          Your Financial
+          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-secondary-300 to-accent-300">
+            Success Partner
+          </span>
+        </h1>
+        <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
+          Expert financial consulting services tailored to help you achieve your goals. 
+          From investment planning to business finance, we're here to guide your journey.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 mb-12">
+          <Link
+            to="/contact"
+            className="btn-accent text-lg px-8 py-4 flex items-center justify-center space-x-2"
+          >
+            <Calendar className="h-5 w-5" />
+            <span>Book Free Consultation</span>
+            <ArrowRight className="h-5 w-5" />
+          </Link>
+          <Link
+            to="/services"
+            className="btn-outline text-lg px-8 py-4 flex items-center justify-center space-x-2 border-white text-white hover:bg-white hover:text-primary-900"
+          >
+            <span>Our Services</span>
+            <ArrowRight className="h-5 w-5" />
+          </Link>
         </div>
-      </section>
+
+        {/* Stats */}
+        <Stats />
+      </div>
+
+      {/* Hero Image */}
+      <div
+        className="relative animate-slide-up"
+        style={{ animationDelay: "0.3s" }}
+      >
+        <div className="relative">
+          {/* Floating Card */}
+          {/* <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-2xl animate-bounce-subtle">
+            <div className="flex items-center space-x-4">
+              <div className="bg-secondary-100 p-3 rounded-lg">
+                <TrendingUp className="h-8 w-8 text-secondary-600" />
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-gray-900">+23.5%</div>
+                <div className="text-gray-600">Portfolio Growth</div>
+              </div>
+            </div>
+          </div> */}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Services Overview */}
       <section className="section-padding bg-gray-50">

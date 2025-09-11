@@ -8,13 +8,18 @@ const Navbar: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+  const handleScroll = () => {
+    const hero = document.querySelector("#hero"); // target hero section
+    if (hero) {
+      const heroHeight = hero.clientHeight;
+      setIsScrolled(window.scrollY > heroHeight - 80); 
+    }
+  };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -24,14 +29,16 @@ const Navbar: React.FC = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
-  const isActive = (path: string) => {
-    return location.pathname === path;
-  };
+  const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-lg py-2' : 'bg-white/95 backdrop-blur-sm py-4'
-    }`}>
+    <nav
+  className={`fixed w-full z-50 transition-all duration-300 ${
+    isScrolled
+      ? "bg-white shadow-lg py-2"   // after hero
+      : "bg-footer-deep-blue/40 backdrop-blur-md py-4" // over hero video
+  }`}
+>
       <div className="container-custom">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -58,19 +65,18 @@ const Navbar: React.FC = () => {
                 }`}
               >
                 {item.name}
-                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full ${
-                  isActive(item.href) ? 'w-full' : ''
-                }`}></span>
+                <span
+                  className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full ${
+                    isActive(item.href) ? 'w-full' : ''
+                  }`}
+                ></span>
               </Link>
             ))}
           </div>
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link
-              to="/contact"
-              className="btn-accent flex items-center space-x-2"
-            >
+            <Link to="/contact" className="btn-accent flex items-center space-x-2">
               <Calendar className="h-4 w-4" />
               <span>Book Consultation</span>
             </Link>
@@ -86,9 +92,11 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
-        }`}>
+        <div
+          className={`md:hidden transition-all duration-300 overflow-hidden ${
+            isOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
+          }`}
+        >
           <div className="bg-gray-50 rounded-lg p-4 space-y-2">
             {navigation.map((item) => (
               <Link
