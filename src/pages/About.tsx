@@ -37,8 +37,10 @@ const About: React.FC = () => {
                 <p>
                   Today, we serve 450+ active clients in insurance services and manage/advice on portfolios totaling ₹10+ crore. Our specialization lies in comprehensive financial planning and end-to-end portfolio management—optimizing insurance cover, building resilient mutual fund allocations, and aligning investments to life goals. Transparent, research-driven, and client-first, we partner with you to protect wealth, grow it sustainably, and stay on track year after year.
                 </p>
+                <h1>Mr. Sainath Mhetre</h1>
               </div>
             </div>
+            
 
             <div className="animate-slide-up" style={{ animationDelay: '0.3s' }}>
               <img 

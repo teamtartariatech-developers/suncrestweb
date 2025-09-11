@@ -63,6 +63,13 @@ const Footer: React.FC = () => {
               >
                 <Instagram className="h-5 w-5" />
               </a>
+              <a
+                href="https://x.com/Suncreastfins"
+                className="text-[#F97316] hover:text-[#FB923C] transition-colors duration-200"
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+
             </div>
           </div>
 
