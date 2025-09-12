@@ -48,21 +48,21 @@ const Contact: React.FC = () => {
               {
                 icon: MapPin,
                 title: 'Visit Our Office',
-                details: ['123 Finance Street', 'New York, NY 10001', 'United States'],
+                details: ['Dhole patil Road.', 'Pune City 4110011', ],
                 color: 'text-primary-600',
                 bgColor: 'bg-primary-100',
               },
               {
                 icon: Phone,
                 title: 'Call Us',
-                details: ['+1 (555) 123-4567', '+1 (555) 123-4568', 'Mon-Fri: 9AM-6PM EST'],
+                details: ['+91 7020888144',  'Mon-Fri: 9AM-6PM EST'],
                 color: 'text-secondary-600',
                 bgColor: 'bg-secondary-100',
               },
               {
                 icon: Mail,
                 title: 'Email Us',
-                details: ['info@suncrestfinance.com', 'support@suncrestfinance.com', 'We respond within 24 hours'],
+                details: ['contact@suncreastfinancials.com', 'We respond within 24 hours'],
                 color: 'text-accent-600',
                 bgColor: 'bg-accent-100',
               },
@@ -182,18 +182,24 @@ const Contact: React.FC = () => {
             </p>
           </div>
           
-          <div className="card p-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-            <div className="bg-gray-200 h-96 rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-gray-700 mb-2">Interactive Map</h3>
-                <p className="text-gray-600">
-                  123 Finance Street, New York, NY 10001<br />
-                  <span className="text-sm">(Google Maps integration would go here)</span>
-                </p>
-              </div>
-            </div>
-          </div>
+          <div
+  className="card p-4 animate-slide-up"
+  style={{ animationDelay: "0.3s" }}
+>
+  <div className="bg-gray-200 h-96 rounded-lg flex items-center justify-center overflow-hidden">
+    <iframe
+      title="Google Map"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.465476004684!2d73.87615781489124!3d18.53122238740139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c06ed8cfa7d3%3A0xf2d81e215c35bfb3!2sDhole%20Patil%20Rd%2C%20Pune%2C%20Maharashtra%20411001!5e0!3m2!1sen!2sin!4v1694443534567!5m2!1sen!2sin"
+      width="100%"
+      height="100%"
+      style={{ border: 0 }}
+      allowFullScreen=""
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+</div>
+
         </div>
       </section>
     </div>
