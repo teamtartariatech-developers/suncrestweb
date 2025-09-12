@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, TrendingUp, Users, Award, Star, Calendar, CheckCircle } from 'lucide-react';
 import Stats from './Stats';
+import Comparehensive from './Comparehensive'
 
 const Home: React.FC = () => {
   return (
@@ -87,7 +88,8 @@ const Home: React.FC = () => {
 
 
       {/* Services Overview */}
-      <section className="section-padding bg-gray-50">
+      <Comparehensive />
+      {/* <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-16 animate-slide-up">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -166,7 +168,7 @@ const Home: React.FC = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Why Choose Us */}
       <section className="section-padding bg-finance-green text-white">
@@ -222,7 +224,7 @@ const Home: React.FC = () => {
 
       <div className="animate-slide-up" style={{ animationDelay: "0.3s" }}>
         <img
-          src="assets/img1.webp"
+          src="https://www.suncreastfinancials.com/public/img1.webp"
           alt="Professional Financial Team"
           className="rounded-2xl shadow-2xl w-full h-[400px] md:h-[600px] object-cover ring-1 ring-white/10"
         />

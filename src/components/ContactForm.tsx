@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Send, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 interface ContactFormData {
   name: string;
@@ -11,22 +12,51 @@ interface ContactFormData {
   preferredContact: 'email' | 'phone';
 }
 
+const SERVICE_ID = 'service_wnrgjg4';
+const TEMPLATE_ID = 'template_mzyt4bl';
+const PUBLIC_KEY = 'LBlYoEAIwb_JgiLgj';
+
 const ContactForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ContactFormData>();
   const [isSubmitted, setIsSubmitted] = React.useState(false);
+  const [isSending, setIsSending] = React.useState(false);
+  const [errorMsg, setErrorMsg] = React.useState<string | null>(null);
 
   const onSubmit = async (data: ContactFormData) => {
-    // Here you would typically send the data to your backend
-    console.log('Contact form submitted:', data);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    setIsSubmitted(true);
-    reset();
-    
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000);
+    setIsSending(true);
+    setErrorMsg(null);
+
+    try {
+      // Send with EmailJS using the data object from react-hook-form
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          // Ensure these keys exist in your EmailJS template variables
+          name: data.name,
+          email: data.email,
+          phone: data.phone || '',
+          subject: data.subject,
+          message: data.message,
+          preferredContact: data.preferredContact,
+          // Optional extras you can use inside your template:
+          to_name: 'Adswise Marketing',
+          from_name: data.name,
+          reply_to: data.email,
+        },
+        { publicKey: PUBLIC_KEY }
+      );
+
+      setIsSubmitted(true);
+      reset();
+      // Hide success after 5s
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (err: any) {
+      setErrorMsg('Something went wrong while sending your message. Please try again.');
+      console.error('EmailJS error:', err);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   if (isSubmitted) {
@@ -68,12 +98,12 @@ const ContactForm: React.FC = () => {
         <input
           type="email"
           id="email"
-          {...register('email', { 
+          {...register('email', {
             required: 'Email is required',
             pattern: {
               value: /^\S+@\S+$/i,
-              message: 'Please enter a valid email address'
-            }
+              message: 'Please enter a valid email address',
+            },
           })}
           className={`input-field ${errors.email ? 'border-red-300' : ''}`}
           placeholder="your.email@example.com"
@@ -91,7 +121,7 @@ const ContactForm: React.FC = () => {
           id="phone"
           {...register('phone')}
           className="input-field"
-          placeholder="+1 (555) 123-4567"
+          placeholder="+91 98765 43210"
         />
       </div>
 
@@ -116,34 +146,6 @@ const ContactForm: React.FC = () => {
         {errors.subject && <p className="mt-1 text-sm text-red-600">{errors.subject.message}</p>}
       </div>
 
-      {/* Preferred Contact Method */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
-          Preferred Contact Method
-        </label>
-        <div className="flex space-x-6">
-          <label className="flex items-center">
-            <input
-              type="radio"
-              {...register('preferredContact')}
-              value="email"
-              className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
-              defaultChecked
-            />
-            <span className="ml-2 text-sm text-gray-700">Email</span>
-          </label>
-          <label className="flex items-center">
-            <input
-              type="radio"
-              {...register('preferredContact')}
-              value="phone"
-              className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
-            />
-            <span className="ml-2 text-sm text-gray-700">Phone</span>
-          </label>
-        </div>
-      </div>
-
       {/* Message */}
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
@@ -159,13 +161,19 @@ const ContactForm: React.FC = () => {
         {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>}
       </div>
 
+      {/* Error */}
+      {errorMsg && (
+        <p className="text-sm text-red-600 text-center">{errorMsg}</p>
+      )}
+
       {/* Submit Button */}
       <button
         type="submit"
-        className="btn-primary w-full flex items-center justify-center space-x-2"
+        className="btn-primary w-full flex items-center justify-center space-x-2 disabled:opacity-60 disabled:cursor-not-allowed"
+        disabled={isSending}
       >
         <Send className="h-5 w-5" />
-        <span>Send Message</span>
+        <span>{isSending ? 'Sending…' : 'Send Message'}</span>
       </button>
 
       <p className="text-sm text-gray-500 text-center">

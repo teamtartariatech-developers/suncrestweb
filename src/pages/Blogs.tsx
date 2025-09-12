@@ -37,7 +37,8 @@ const Blogs: React.FC = () => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="gradient-bg text-white section-padding">
+      <section className="                  bg-finance-green
+ text-white section-padding">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center animate-slide-up">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">

@@ -321,7 +321,8 @@ const Services: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding footer-deep-blue text-white">
+      <section className="section-padding                   bg-finance-green
+ text-white">
         <div className="container-custom text-center">
           <div className="max-w-4xl mx-auto animate-slide-up">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">

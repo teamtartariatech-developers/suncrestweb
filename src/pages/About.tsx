@@ -1,6 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Award, Users, Target, Heart, Calendar, ArrowRight, CheckCircle, TrendingUp } from 'lucide-react';
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+  Award,
+  Users,
+  Target,
+  Heart,
+  Calendar,
+  ArrowRight,
+  CheckCircle,
+  TrendingUp,
+} from "lucide-react";
 
 const About: React.FC = () => {
   return (
@@ -11,11 +20,15 @@ const About: React.FC = () => {
           <div className="max-w-4xl mx-auto text-center animate-slide-up">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               About
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-300 to-accent-300"> Suncrest Finance</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-300 to-accent-300">
+                {" "}
+                Suncrest Finance
+              </span>
             </h1>
             <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
-              Your trusted partner in achieving financial success. We've been helping 
-              individuals and businesses build wealth and secure their future for over 15 years.
+              Your trusted partner in achieving financial success. We've been
+              helping individuals and businesses build wealth and secure their
+              future for over 15 years.
             </p>
           </div>
         </div>
@@ -28,24 +41,41 @@ const About: React.FC = () => {
             <div className="animate-slide-up">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
                 Our
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600"> Story</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
+                  {" "}
+                  Story
+                </span>
               </h2>
               <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  With 8 years of hands-on experience across Insurance, Equity, and Mutual Funds, we help individuals and businesses make confident, goal-aligned financial decisions. Led by a B.Com graduate and CFP® (Certified Financial Planner) with NISM credentials, our practice combines rigorous planning with disciplined execution.
+                  With 8 years of hands-on experience across Insurance, Equity,
+                  and Mutual Funds, we help individuals and businesses make
+                  confident, goal-aligned financial decisions. Led by a B.Com
+                  graduate and CFP® (Certified Financial Planner) with NISM
+                  credentials, our practice combines rigorous planning with
+                  disciplined execution.
                 </p>
                 <p>
-                  Today, we serve 450+ active clients in insurance services and manage/advice on portfolios totaling ₹10+ crore. Our specialization lies in comprehensive financial planning and end-to-end portfolio management—optimizing insurance cover, building resilient mutual fund allocations, and aligning investments to life goals. Transparent, research-driven, and client-first, we partner with you to protect wealth, grow it sustainably, and stay on track year after year.
+                  Today, we serve 450+ active clients in insurance services and
+                  manage/advice on portfolios totaling ₹10+ crore. Our
+                  specialization lies in comprehensive financial planning and
+                  end-to-end portfolio management—optimizing insurance cover,
+                  building resilient mutual fund allocations, and aligning
+                  investments to life goals. Transparent, research-driven, and
+                  client-first, we partner with you to protect wealth, grow it
+                  sustainably, and stay on track year after year.
                 </p>
                 <h1>Mr. Sainath Mhetre</h1>
               </div>
             </div>
-            
 
-            <div className="animate-slide-up" style={{ animationDelay: '0.3s' }}>
-              <img 
-                src="/assets/owner.jpg" 
-                alt="Our Office" 
+            <div
+              className="animate-slide-up"
+              style={{ animationDelay: "0.3s" }}
+            >
+              <img
+                src="https://www.suncreastfinancials.com/public/owner.jpg"
+                alt="Our Office"
                 className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
               />
             </div>
@@ -54,15 +84,20 @@ const About: React.FC = () => {
       </section>
 
       {/* Our Values */}
+      {/* Our Values */}
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-16 animate-slide-up">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Our
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600"> Values</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
+                {" "}
+                Values
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              These core values guide everything we do and shape how we serve our clients.
+              These core values guide everything we do and shape how we serve
+              our clients.
             </p>
           </div>
 
@@ -70,43 +105,70 @@ const About: React.FC = () => {
             {[
               {
                 icon: Award,
-                title: 'Excellence',
-                description: 'We strive for excellence in every aspect of our service, continuously improving our expertise and processes.',
-                color: 'text-primary-600',
-                bgColor: 'bg-primary-100',
+                title: "Excellence",
+                description:
+                  "We strive for excellence in every aspect of our service, continuously improving our expertise and processes.",
+                color: "text-primary-600",
+                bgColor: "bg-primary-100",
               },
               {
                 icon: Users,
-                title: 'Client-Focused',
-                description: 'Our clients\' success is our success. We put your needs first and build strategies around your goals.',
-                color: 'text-secondary-600',
-                bgColor: 'bg-secondary-100',
+                title: "Client-Focused",
+                description:
+                  "Our clients' success is our success. We put your needs first and build strategies around your goals.",
+                color: "text-secondary-600",
+                bgColor: "bg-secondary-100",
               },
               {
                 icon: Target,
-                title: 'Integrity',
-                description: 'We operate with complete transparency and honesty, ensuring you always understand our recommendations.',
-                color: 'text-accent-600',
-                bgColor: 'bg-accent-100',
+                title: "Integrity",
+                description:
+                  "We operate with complete transparency and honesty, ensuring you always understand our recommendations.",
+                color: "text-accent-600",
+                bgColor: "bg-accent-100",
               },
               {
                 icon: Heart,
-                title: 'Compassion',
-                description: 'We understand that financial decisions can be stressful. We provide support with empathy and understanding.',
-                color: 'text-primary-600',
-                bgColor: 'bg-primary-100',
+                title: "Compassion",
+                description:
+                  "We understand that financial decisions can be stressful. We provide support with empathy and understanding.",
+                color: "text-primary-600",
+                bgColor: "bg-primary-100",
               },
             ].map((value, index) => (
-              <div 
+              <div
                 key={value.title}
-                className="card p-8 text-center hover:border-primary-200 border border-transparent animate-slide-up"
+                className="relative overflow-hidden card p-8 text-center group border border-transparent hover:border-blue-700 animate-slide-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className={`${value.bgColor} p-4 rounded-lg w-fit mx-auto mb-6`}>
-                  <value.icon className={`h-8 w-8 ${value.color}`} />
+                {/* Deep-blue sweep overlay (right → left) */}
+                <div
+                  className="
+              absolute inset-0 z-0 pointer-events-none
+                                bg-finance-green
+              origin-left scale-x-0 group-hover:scale-x-100
+              transition-transform duration-500 ease-out
+            "
+                />
+
+                {/* Content above overlay */}
+                <div className="relative z-10">
+                  <div
+                    className={`${value.bgColor} p-4 rounded-lg w-fit mx-auto mb-6
+                          transition-all duration-300 group-hover:scale-110 group-hover:bg-white/10`}
+                  >
+                    <value.icon
+                      className={`h-8 w-8 ${value.color} transition-colors duration-300 group-hover:text-white`}
+                    />
+                  </div>
+
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 transition-colors duration-300 group-hover:text-white">
+                    {value.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed transition-colors duration-300 group-hover:text-blue-100">
+                    {value.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
@@ -119,37 +181,44 @@ const About: React.FC = () => {
           <div className="text-center mb-16 animate-slide-up">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Our
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600"> Track Record</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
+                {" "}
+                Track Record
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Numbers that speak to our commitment to excellence and client success.
+              Numbers that speak to our commitment to excellence and client
+              success.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                number: '450+',
-                label: 'Happy Clients',
-                description: 'Individuals and businesses trust us with their financial future',
+                number: "450+",
+                label: "Happy Clients",
+                description:
+                  "Individuals and businesses trust us with their financial future",
               },
               {
-                number: '₹10Cr+',
-                label: 'Assets Under Management',
-                description: 'We manage and protect millions in client assets',
+                number: "₹10Cr+",
+                label: "Assets Under Management",
+                description: "We manage and protect millions in client assets",
               },
               {
-                number: '8+',
-                label: 'Years of Experience',
-                description: 'Proven track record of financial expertise and guidance',
+                number: "8+",
+                label: "Years of Experience",
+                description:
+                  "Proven track record of financial expertise and guidance",
               },
               {
-                number: '98%',
-                label: 'Client Satisfaction',
-                description: 'Our clients consistently rate our service as excellent',
+                number: "98%",
+                label: "Client Satisfaction",
+                description:
+                  "Our clients consistently rate our service as excellent",
               },
             ].map((stat, index) => (
-              <div 
+              <div
                 key={stat.label}
                 className="text-center animate-slide-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -157,8 +226,12 @@ const About: React.FC = () => {
                 <div className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white text-4xl font-bold py-8 rounded-2xl mb-4">
                   {stat.number}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{stat.label}</h3>
-                <p className="text-gray-600 leading-relaxed">{stat.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {stat.label}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {stat.description}
+                </p>
               </div>
             ))}
           </div>
@@ -170,45 +243,62 @@ const About: React.FC = () => {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="animate-slide-up">
-              <img 
-                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Why Choose Us" 
+              <img
+                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="Why Choose Us"
                 className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
               />
             </div>
 
-            <div className="animate-slide-up" style={{ animationDelay: '0.3s' }}>
+            <div
+              className="animate-slide-up"
+              style={{ animationDelay: "0.3s" }}
+            >
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
                 Why Choose
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600"> Suncrest Finance?</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
+                  {" "}
+                  Suncrest Finance?
+                </span>
               </h2>
-              
+
               <div className="space-y-6">
                 {[
                   {
-                    title: 'Personalized Approach',
-                    description: 'Every client is unique. We create customized strategies that align with your specific goals and circumstances.',
+                    title: "Personalized Approach",
+                    description:
+                      "Every client is unique. We create customized strategies that align with your specific goals and circumstances.",
                   },
                   {
-                    title: 'Comprehensive Services',
-                    description: 'From investment planning to tax optimization, we offer a full suite of financial services under one roof.',
+                    title: "Comprehensive Services",
+                    description:
+                      "From investment planning to tax optimization, we offer a full suite of financial services under one roof.",
                   },
                   {
-                    title: 'Ongoing Support',
-                    description: 'We don\'t just create a plan and walk away. We provide continuous monitoring and adjustments as needed.',
+                    title: "Ongoing Support",
+                    description:
+                      "We don't just create a plan and walk away. We provide continuous monitoring and adjustments as needed.",
                   },
                   {
-                    title: 'Fee Transparency',
-                    description: 'No hidden costs or surprise fees. We believe in complete transparency in all our pricing.',
+                    title: "Fee Transparency",
+                    description:
+                      "No hidden costs or surprise fees. We believe in complete transparency in all our pricing.",
                   },
                 ].map((feature, index) => (
-                  <div key={feature.title} className="flex items-start space-x-4">
+                  <div
+                    key={feature.title}
+                    className="flex items-start space-x-4"
+                  >
                     <div className="bg-secondary-100 p-2 rounded-lg flex-shrink-0">
                       <CheckCircle className="h-6 w-6 text-secondary-600" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h4>
-                      <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                        {feature.title}
+                      </h4>
+                      <p className="text-gray-600 leading-relaxed">
+                        {feature.description}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -226,10 +316,13 @@ const About: React.FC = () => {
               Ready to Start Your Financial Journey?
             </h2>
             <p className="text-xl text-primary-100 mb-8 leading-relaxed">
-              Join hundreds of satisfied clients who trust Suncrest Finance with their 
-              financial future. Schedule your free consultation today.
+              Join hundreds of satisfied clients who trust Suncrest Finance with
+              their financial future. Schedule your free consultation today.
             </p>
-            <Link to="/contact" className="btn-accent text-lg px-8 py-4 inline-flex items-center space-x-2">
+            <Link
+              to="/contact"
+              className="btn-accent text-lg px-8 py-4 inline-flex items-center space-x-2"
+            >
               <Calendar className="h-5 w-5" />
               <span>Schedule Free Consultation</span>
               <ArrowRight className="h-5 w-5" />
