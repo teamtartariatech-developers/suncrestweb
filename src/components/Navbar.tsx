@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Calendar, TrendingUp } from "lucide-react";
-
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,24 +31,21 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white shadow-lg py-2" // after hero
-          : "bg-footer-deep-blue/40 backdrop-blur-md py-4" // over hero video
-      }`}
+      className={`fixed w-full z-10 transition-all duration-300 ${isScrolled
+        ? "bg-white shadow-lg py-4" // after hero
+        : "bg-white  py-3" // over hero video
+        }`}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group px-4">
-            <div className="bg-gradient-to-r from-primary-600 to-secondary-500 p-2 rounded-lg group-hover:scale-110 transition-transform duration-300">
-              <TrendingUp className="h-6 w-6 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-primary-800">
-                Suncrest
-              </span>
-              <span className="text-sm text-secondary-600 -mt-1">Finance</span>
+            <div className="h-15 w-40 mt-[-5px]">
+              <img
+                src="https://suncreastfinancials.com/public/logo.png"
+                alt="Suncrest Finance Logo"
+                className="h-full w-full object-cover"
+              />
             </div>
           </Link>
 
@@ -59,17 +55,15 @@ const Navbar: React.FC = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`font-medium transition-colors duration-200 relative group ${
-                  isActive(item.href)
-                    ? "text-primary-600"
-                    : "text-gray-700 hover:text-primary-600"
-                }`}
+                className={`font-medium transition-colors duration-200 relative group ${isActive(item.href)
+                  ? "text-primary-600"
+                  : "text-gray-700 hover:text-primary-600"
+                  }`}
               >
                 {item.name}
                 <span
-                  className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full ${
-                    isActive(item.href) ? "w-full" : ""
-                  }`}
+                  className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full ${isActive(item.href) ? "w-full" : ""
+                    }`}
                 ></span>
               </Link>
             ))}
@@ -97,9 +91,8 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Navigation */}
         <div
-          className={`md:hidden transition-all duration-300 overflow-hidden ${
-            isOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
-          }`}
+          className={`md:hidden transition-all duration-300 overflow-hidden ${isOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
+            }`}
         >
           <div className="bg-gray-50 rounded-lg p-4 space-y-2">
             {navigation.map((item) => (
@@ -107,11 +100,10 @@ const Navbar: React.FC = () => {
                 key={item.name}
                 to={item.href}
                 onClick={() => setIsOpen(false)}
-                className={`block py-2 px-4 rounded-lg font-medium transition-colors duration-200 ${
-                  isActive(item.href)
-                    ? "bg-primary-600 text-white"
-                    : "text-gray-700 hover:bg-white hover:text-primary-600"
-                }`}
+                className={`block py-2 px-4 rounded-lg font-medium transition-colors duration-200 ${isActive(item.href)
+                  ? "bg-primary-600 text-white"
+                  : "text-gray-700 hover:bg-white hover:text-primary-600"
+                  }`}
               >
                 {item.name}
               </Link>

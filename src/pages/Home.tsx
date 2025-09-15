@@ -10,11 +10,11 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <section 
       id = 'hero'
-      className="relative text-white overflow-hidden">
+      className="relative h-screen text-white overflow-hidden ">
 
   {/* Background Video */}
   <video
-    className="absolute inset-0 w-full h-full object-cover"
+    className="absolute inset-0 w-full h-full object-cover z-0"
     src="https://v1.pinimg.com/videos/mc/720p/78/f6/c8/78f6c862362e64768d0f156db81e6d1b.mp4"
     autoPlay
     loop
