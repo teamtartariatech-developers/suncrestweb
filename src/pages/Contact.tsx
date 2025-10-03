@@ -26,7 +26,11 @@ const Contact: React.FC = () => {
     <div className="animate-fade-in">
       {/* Hero Section */}
       <section className="                  bg-finance-green
- text-white section-padding">
+ text-white section-padding" style={{
+    backgroundImage: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://www.suncreastfinancials.com/public/contactus.jpg")',
+    backgroundSize: "cover",
+    backgroundPosition: "bottom",
+  }}>
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center animate-slide-up">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -170,7 +174,7 @@ const Contact: React.FC = () => {
       </section>
 
       {/* Map Section */}
-      <section className="section-padding bg-finance-green">
+      {/* <section className="section-padding bg-finance-green">
         <div className="container-custom">
           <div className="text-center mb-12 animate-slide-up">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -202,7 +206,7 @@ const Contact: React.FC = () => {
 </div>
 
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

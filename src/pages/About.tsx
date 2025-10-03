@@ -15,7 +15,11 @@ const About: React.FC = () => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="bg-finance-green text-white section-padding">
+      <section className="bg-finance-green text-white section-padding" style={{
+    backgroundImage: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://www.suncreastfinancials.com/public/about.jpg")',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}>
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center animate-slide-up">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -57,7 +61,7 @@ const About: React.FC = () => {
                 </p>
                 <p>
                   Today, we serve 450+ active clients in insurance services and
-                  manage/advice on portfolios totaling ₹10+ crore. Our
+                  manage/advice on portfolios totaling ₹100+ crore. Our
                   specialization lies in comprehensive financial planning and
                   end-to-end portfolio management—optimizing insurance cover,
                   building resilient mutual fund allocations, and aligning
@@ -201,7 +205,7 @@ const About: React.FC = () => {
                   "Individuals and businesses trust us with their financial future",
               },
               {
-                number: "₹10Cr+",
+                number: "₹100Cr+",
                 label: "Assets Under Management",
                 description: "We manage and protect millions in client assets",
               },

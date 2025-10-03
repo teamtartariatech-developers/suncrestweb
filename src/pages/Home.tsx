@@ -13,14 +13,12 @@ const Home: React.FC = () => {
       className="relative h-screen text-white overflow-hidden ">
 
   {/* Background Video */}
-  <video
-    className="absolute inset-0 w-full h-full object-cover z-0"
-    src="https://v1.pinimg.com/videos/mc/720p/78/f6/c8/78f6c862362e64768d0f156db81e6d1b.mp4"
-    autoPlay
-    loop
-    muted
-    playsInline
-  ></video>
+  <img
+  className="absolute inset-0 w-full h-full object-cover z-0"
+  src="https://suncreastfinancials.com/public/bg-video.gif"
+  alt="Background animation"
+/>
+
 
   {/* Optional overlays for readability */}
   <div className="absolute inset-0 bg-black/40"></div>
@@ -224,9 +222,9 @@ const Home: React.FC = () => {
 
       <div className="animate-slide-up" style={{ animationDelay: "0.3s" }}>
         <img
-          src="https://www.suncreastfinancials.com/public/img1.webp"
+          src="https://www.suncreastfinancials.com/public/3.png"
           alt="Professional Financial Team"
-          className="rounded-2xl shadow-2xl w-full h-[400px] md:h-[600px] object-cover ring-1 ring-white/10"
+          className=" w-full h-[400px] md:h-[600px] "
         />
       </div>
     </div>

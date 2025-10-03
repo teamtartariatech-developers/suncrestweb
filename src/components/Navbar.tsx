@@ -8,7 +8,7 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const hero = document.querySelector("#hero"); // target hero section
+      const hero = document.querySelector("#hero");
       if (hero) {
         const heroHeight = hero.clientHeight;
         setIsScrolled(window.scrollY > heroHeight - 80);
@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
     { name: "About", href: "/about" },
-    { name: "Blogs", href: "/blogs" },
+    // { name: "Blogs", href: "/blogs" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -123,4 +123,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default Navbar; 

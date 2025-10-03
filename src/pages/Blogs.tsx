@@ -37,8 +37,11 @@ const Blogs: React.FC = () => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="                  bg-finance-green
- text-white section-padding">
+      <section className="bg-finance-green text-white section-padding" style={{
+    backgroundImage: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://www.suncreastfinancials.com/public/blogs.jpg")',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}>
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center animate-slide-up">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">

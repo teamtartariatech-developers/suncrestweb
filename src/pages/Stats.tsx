@@ -12,7 +12,7 @@ const Stats = () => {
       </div>
       <div className="text-center">
         <div className="text-3xl font-bold text-secondary-300 mb-2">
-          <CountUp start={0} end={10} duration={2} prefix="₹" suffix="Cr+" />
+          <CountUp start={0} end={100} duration={2} prefix="₹" suffix="Cr+" />
         </div>
         <div className="text-primary-200">Assets Managed</div>
       </div>
