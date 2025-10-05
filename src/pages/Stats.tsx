@@ -6,7 +6,7 @@ const Stats = () => {
     <div className="grid grid-cols-3 gap-8 pt-8 border-t border-primary-700">
       <div className="text-center">
         <div className="text-3xl font-bold text-secondary-300 mb-2">
-          <CountUp start={0} end={450} duration={3.5} suffix="+" />
+          <CountUp start={0} end={4500} duration={3.5} suffix="+" />
         </div>
         <div className="text-primary-200">Happy Clients</div>
       </div>

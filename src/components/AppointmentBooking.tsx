@@ -1,31 +1,40 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Calendar, Clock, CheckCircle, User } from 'lucide-react';
+import { Calendar, CheckCircle } from 'lucide-react';
 import { format, addDays, addMinutes } from 'date-fns';
 
 interface AppointmentFormData {
   name: string;
   email: string;
   phone: string;
-  service: string;
-  date: string;
-  time: string;
-  notes: string;
+  service?: string;
+  date?: string;
+  time?: string;
+  notes?: string;
 }
 
 const AppointmentBooking: React.FC = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<AppointmentFormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<AppointmentFormData>({
+    defaultValues: {
+      service: 'Consultation',
+      notes: '',
+    },
+  });
+
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [selectedTime, setSelectedTime] = useState<string>('');
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // NEW: store calendar/ics links to show after success
   const [gcalUrl, setGcalUrl] = useState<string>('');
   const [icsHref, setIcsHref] = useState<string>('');
 
-  // ===== Helpers for calendar links =====
+  // Convert Date -> Google style YYYYMMDDTHHMMSSZ
   const toGoogleDateTime = (d: Date) =>
-    d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z'); // YYYYMMDDTHHMMSSZ
+    d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
 
   const buildGoogleCalendarUrl = (opts: {
     title: string;
@@ -34,15 +43,23 @@ const AppointmentBooking: React.FC = () => {
     start: Date;
     end: Date;
   }) => {
+    const dates = `${toGoogleDateTime(opts.start)}/${toGoogleDateTime(opts.end)}`;
     const params = new URLSearchParams({
       action: 'TEMPLATE',
       text: opts.title,
       details: opts.details,
       location: opts.location || 'Online',
-      dates: `${toGoogleDateTime(opts.start)}/${toGoogleDateTime(opts.end)}`
+      dates,
     });
-    return `https://calendar.app.google/QGXBeqKNoNVHhUQ47?${params.toString()}`;
+    return `https://calendar.google.com/calendar/render?${params.toString()}`;
   };
+
+  const escapeICS = (text: string) =>
+    text
+      .replace(/\\/g, '\\\\')
+      .replace(/\n/g, '\\n')
+      .replace(/,/g, '\\,')
+      .replace(/;/g, '\\;');
 
   const buildICS = (opts: {
     title: string;
@@ -57,7 +74,6 @@ const AppointmentBooking: React.FC = () => {
     const dtEnd = toGoogleDateTime(opts.end);
     const uid = `${dtStamp}-${Math.random().toString(36).slice(2)}@adswise`;
 
-    // Basic RFC5545 .ics
     const ics = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
@@ -73,26 +89,18 @@ const AppointmentBooking: React.FC = () => {
       `DESCRIPTION:${escapeICS(opts.details)}`,
       `LOCATION:${escapeICS(opts.location || 'Online')}`,
       'END:VEVENT',
-      'END:VCALENDAR'
+      'END:VCALENDAR',
     ].join('\r\n');
 
     const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
     return URL.createObjectURL(blob);
   };
 
-  const escapeICS = (text: string) =>
-    text
-      .replace(/\\/g, '\\\\')
-      .replace(/\n/g, '\\n')
-      .replace(/,/g, '\\,')
-      .replace(/;/g, '\\;');
-
-  // ===== Dates =====
+  // generate next 14 business days (skips weekends)
   const generateAvailableDates = () => {
     const dates: { value: string; label: string }[] = [];
     let currentDate = new Date();
     let added = 0;
-
     while (added < 14) {
       currentDate = addDays(currentDate, 1);
       const day = currentDate.getDay();
@@ -120,23 +128,27 @@ const AppointmentBooking: React.FC = () => {
   const availableDates = generateAvailableDates();
 
   const onSubmit = async (data: AppointmentFormData) => {
+    // ensure date/time selected
+    if (!selectedDate || !selectedTime) {
+      alert('Please select a date and time before booking.');
+      return;
+    }
+
     const appointmentData = {
       ...data,
       date: selectedDate,
       time: selectedTime,
     };
 
-    // Build start/end from selected date & time in local TZ
+    // Build start/end using local timezone
     const startLocal = new Date(`${appointmentData.date}T${appointmentData.time}:00`);
-    const endLocal = addMinutes(startLocal, 60); // 60-min slot
+    const endLocal = addMinutes(startLocal, 60);
 
-    // Compose event meta
-    const title = `Consultation — ${data.service || 'Financial Service'}`;
+    const title = `Consultation — ${appointmentData.service || 'Financial Service'}`;
     const details =
-      `Client: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}` +
-      (data.notes ? `\n\nNotes:\n${data.notes}` : '');
+      `Client: ${appointmentData.name}\nEmail: ${appointmentData.email}\nPhone: ${appointmentData.phone}` +
+      (appointmentData.notes ? `\n\nNotes:\n${appointmentData.notes}` : '');
 
-    // Create links
     const gUrl = buildGoogleCalendarUrl({
       title,
       details,
@@ -144,6 +156,7 @@ const AppointmentBooking: React.FC = () => {
       start: startLocal,
       end: endLocal,
     });
+
     const icsUrl = buildICS({
       title,
       details,
@@ -156,30 +169,36 @@ const AppointmentBooking: React.FC = () => {
     setGcalUrl(gUrl);
     setIcsHref(icsUrl);
 
-    // TODO: send to your backend / email service if needed
-    console.log('Appointment booked:', appointmentData);
+    // Open Google Calendar in a new tab; fallback to current tab if blocked
+    const newWindow = window.open(gUrl, '_blank', 'noopener,noreferrer');
+    if (!newWindow) {
+      window.location.href = gUrl;
+    }
 
-    await new Promise(res => setTimeout(res, 800));
-
+    // local confirmation shown immediately
     setIsSubmitted(true);
-    reset();
+    console.log('Appointment locally recorded:', appointmentData);
+
+    // clear form UI
+    reset({ service: 'Consultation', notes: '' });
     setSelectedDate('');
     setSelectedTime('');
-    setTimeout(() => setIsSubmitted(false), 5000);
+
+    // auto-hide success card after 8s (optional)
+    setTimeout(() => setIsSubmitted(false), 8000);
   };
 
   if (isSubmitted) {
     return (
-      <div className="card p-8 text-center animate-fade-in">
+      <div className="card p-8 text-center">
         <div className="bg-secondary-100 p-4 rounded-full w-fit mx-auto mb-6">
           <CheckCircle className="h-8 w-8 text-secondary-600" />
         </div>
         <h3 className="text-2xl font-bold text-gray-900 mb-3">Appointment Booked Successfully!</h3>
         <p className="text-gray-600 leading-relaxed mb-6">
-          Your consultation has been scheduled. We’ve recorded the details below.
+          Google Calendar opened in a new tab (or current tab). Please click <strong>Save</strong> there to add this event to your calendar.
         </p>
 
-        {/* NEW: Calendar actions */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           {gcalUrl && (
             <a
@@ -188,7 +207,7 @@ const AppointmentBooking: React.FC = () => {
               rel="noopener noreferrer"
               className="btn-accent px-5 py-3 rounded-lg font-medium"
             >
-              Add to Google Calendar
+              Open Google Calendar
             </a>
           )}
           {icsHref && (
@@ -203,7 +222,7 @@ const AppointmentBooking: React.FC = () => {
         </div>
 
         <p className="text-sm text-gray-500 mt-6">
-          You’ll get a reminder 24 hours before your appointment.
+          You’ll get a reminder 24 hours before your appointment (if you save the event).
         </p>
       </div>
     );
@@ -212,151 +231,115 @@ const AppointmentBooking: React.FC = () => {
   return (
     <div className="card p-8">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        {/* Personal Information */}
-        <div className="space-y-4">
-          {/* <div className="flex items-center space-x-2 mb-4">
-            <User className="h-5 w-5 text-primary-600" />
-            <h3 className="text-lg font-semibold text-gray-900">Your Information</h3>
-          </div> */}
-
-          {/* <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-              Full Name *
+        {/* Personal info (visible & validated) */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+         Name 
             </label>
             <input
-              type="text"
               id="name"
               {...register('name', { required: 'Name is required' })}
-              className={`input-field ${errors.name ? 'border-red-300' : ''}`}
+              className={`input-field w-full ${errors.name ? 'border-red-300' : ''}`}
               placeholder="Your full name"
             />
             {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>}
-          </div> */}
+          </div>
 
-          {/* <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-              Email Address *
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email 
             </label>
             <input
-              type="email"
               id="email"
+              type="email"
               {...register('email', {
                 required: 'Email is required',
-                pattern: {
-                  value: /^\S+@\S+$/i,
-                  message: 'Please enter a valid email address'
-                }
+                pattern: { value: /^\S+@\S+$/i, message: 'Please enter a valid email' },
               })}
-              className={`input-field ${errors.email ? 'border-red-300' : ''}`}
+              className={`input-field w-full ${errors.email ? 'border-red-300' : ''}`}
               placeholder="your.email@example.com"
             />
             {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>}
-          </div> */}
+          </div>
 
-          {/* <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-              Phone Number *
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+              Phone 
             </label>
             <input
-              type="tel"
               id="phone"
-              {...register('phone', { required: 'Phone number is required' })}
-              className={`input-field ${errors.phone ? 'border-red-300' : ''}`}
+              {...register('phone', { required: 'Phone is required' })}
+              className={`input-field w-full ${errors.phone ? 'border-red-300' : ''}`}
               placeholder="+91 98765 43210"
             />
             {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>}
-          </div> */}
+          </div>
         </div>
 
-        {/* Service Selection */}
-        {/* <div>
-          <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-            Service Interest *
-          </label>
-          <select
-            id="service"
-            {...register('service', { required: 'Please select a service' })}
-            className={`input-field ${errors.service ? 'border-red-300' : ''}`}
-          >
-            <option value="">Select a service</option>
-            <option value="consultation">General Financial Consultation</option>
-            <option value="investment">Investment Planning</option>
-            <option value="retirement">Retirement Planning</option>
-            <option value="tax">Tax Planning</option>
-            <option value="business">Business Finance</option>
-            <option value="estate">Estate Planning</option>
-          </select>
-          {errors.service && <p className="mt-1 text-sm text-red-600">{errors.service.message}</p>}
-        </div> */}
-
-        {/* Date Selection */}
-        {/* <div>
-          <div className="flex items-center space-x-2 mb-3">
-            <Calendar className="h-5 w-5 text-primary-600" />
-            <label className="text-sm font-medium text-gray-700">Select Date *</label>
-          </div>
-          <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto">
+        {/* Date selector */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Select Date </label>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 max-h-48 overflow-y-auto">
             {availableDates.map((date) => (
               <button
                 key={date.value}
                 type="button"
                 onClick={() => setSelectedDate(date.value)}
-                className={`p-3 text-sm border rounded-lg transition-all duration-200 ${
+                className={`p-3 text-sm border ${
                   selectedDate === date.value
-                    ? 'bg-primary-600 text-white border-primary-600'
-                    : 'bg-white text-gray-700 border-gray-300 hover:border-primary-300 hover:bg-primary-50'
+                    ? 'bg-primary-600 text-white'
+                    : 'bg-white text-gray-700 border-gray-300'
                 }`}
               >
                 {date.label}
               </button>
             ))}
           </div>
-        </div> */}
+          {!selectedDate && <p className="mt-2 text-sm text-gray-500">Please select a date.</p>}
+        </div>
 
-        {/* Time Selection */}
-        {/* {selectedDate && (
+        {/* Time selector */}
+        {selectedDate && (
           <div>
-            <div className="flex items-center space-x-2 mb-3">
-              <Clock className="h-5 w-5 text-primary-600" />
-              <label className="text-sm font-medium text-gray-700">Select Time *</label>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">Select Time</label>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {timeSlots.map((time) => (
                 <button
                   key={time.value}
                   type="button"
                   onClick={() => setSelectedTime(time.value)}
-                  className={`p-3 text-sm border rounded-lg transition-all duration-200 ${
+                  className={`p-3 text-sm border ${
                     selectedTime === time.value
-                      ? 'bg-secondary-600 text-white border-secondary-600'
-                      : 'bg-white text-gray-700 border-gray-300 hover:border-secondary-300 hover:bg-secondary-50'
+                      ? 'bg-secondary-600 text-white'
+                      : 'bg-white text-gray-700 border-gray-300'
                   }`}
                 >
                   {time.label}
                 </button>
               ))}
             </div>
+            {!selectedTime && <p className="mt-2 text-sm text-gray-500">Please select a time.</p>}
           </div>
-        )} */}
+        )}
 
-        {/* Additional Notes */}
-        {/* <div>
-          <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-2">
-            Additional Notes (Optional)
+        {/* Optional notes */}
+        <div>
+          <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-1">
+            Additional notes (optional)
           </label>
           <textarea
             id="notes"
-            rows={3}
             {...register('notes')}
-            className="input-field resize-none"
-            placeholder="Any specific topics you'd like to discuss or questions you have..."
+            rows={3}
+            className="input-field w-full resize-none"
+            placeholder="Anything you'd like the consultant to know..."
           />
-        </div> */}
+        </div>
 
-        {/* Submit */}
+        {/* Hidden/auto fields handled by state + form data on submit (service kept in form state) */}
         <button
           type="submit"
-          
           className="btn-accent w-full flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Calendar className="h-5 w-5" />
@@ -365,7 +348,7 @@ const AppointmentBooking: React.FC = () => {
 
         <div className="text-sm text-gray-500 space-y-2">
           <p>• Free 30-minute consultation</p>
-          <p>• You’ll receive options to save this to your calendar</p>
+          <p>• Google Calendar will open — click Save to confirm</p>
           <p>• Virtual meetings available upon request</p>
         </div>
       </form>

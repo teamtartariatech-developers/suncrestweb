@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Our Services</h3>
             <ul className="space-y-3">
-              {["Banking Services", "Investment Services", "Taxation & Compliance Services", "Insurance Services", "Financial Advisory & Consulting", "Capital Market & Trading Services" ,"Corporate Finance","Digital & FinTech Services"].map((service) => (
+              {["Investment Services", "Taxation & Compliance Services", "Insurance Services", "Financial Advisory & Consulting", "Capital Market & Trading Services" ].map((service) => (
                 <li key={service}>
                   <Link to="/services" className="text-primary-200 hover:text-white transition-colors duration-200 hover:pl-2 transform transition-all">
                     {service}

@@ -136,12 +136,12 @@ const ContactForm: React.FC = () => {
           className={`input-field ${errors.subject ? 'border-red-300' : ''}`}
         >
           <option value="">Select a subject</option>
-          <option value="consultation">Free Consultation</option>
-          <option value="investment">Investment Planning</option>
-          <option value="retirement">Retirement Planning</option>
-          <option value="tax">Tax Services</option>
-          <option value="business">Business Finance</option>
-          <option value="other">Other</option>
+          <option value="investment">Investment Services</option>
+          <option value="retirement">Taxation & Compliance Services</option>
+          <option value="tax">Insurance Services</option>
+          <option value="business">Financial Advisory & Consulting</option>
+          <option value="other">Capital Market & Trading Services</option>
+          <option value="consultation">Others</option>
         </select>
         {errors.subject && <p className="mt-1 text-sm text-red-600">{errors.subject.message}</p>}
       </div>

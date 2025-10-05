@@ -17,21 +17,21 @@ import {
 
 const Services: React.FC = () => {
   const services = [
-    {
-      icon: CreditCard,
-      title: "Banking Services",
-      description:
-        "Banks provide safe money management, deposits, loans, and digital transactions, acting as the foundation of the financial system.",
-      features: [
-        "Savings & Current Accounts",
-        "Fixed & Recurring Deposits",
-        "Debit/Credit Cards",
-        "Loans (Personal, Home, Car, Business)",
-      ],
-      image:
-        "https://i.pinimg.com/736x/70/ea/73/70ea73dcc62e246770e9379995ad5904.jpg?auto=compress&cs=tinysrgb&w=600",
-      color: "primary",
-    },
+    // {
+    //   icon: CreditCard,
+    //   title: "Banking Services",
+    //   description:
+    //     "Banks provide safe money management, deposits, loans, and digital transactions, acting as the foundation of the financial system.",
+    //   features: [
+    //     "Savings & Current Accounts",
+    //     "Fixed & Recurring Deposits",
+    //     "Debit/Credit Cards",
+    //     "Loans (Personal, Home, Car, Business)",
+    //   ],
+    //   image:
+    //     "https://i.pinimg.com/736x/70/ea/73/70ea73dcc62e246770e9379995ad5904.jpg?auto=compress&cs=tinysrgb&w=600",
+    //   color: "primary",
+    // },
     {
       icon: BarChart,
       title: "Investment Services",
@@ -79,25 +79,25 @@ const Services: React.FC = () => {
       image:
         "https://i.pinimg.com/736x/1f/9f/82/1f9f825beafaa037012dc100fa074de8.jpg?auto=compress&cs=tinysrgb&w=600",
       color: "accent",
-    },
-    {
-      icon: Briefcase,
-      title: "Corporate Finance",
-      description: "Supports businesses with mergers, acquisitions, IPOs, project funding, and strategic cash flow management.",
-      features: ["Mergers & Acquisitions", "IPO (Initial Public Offering)", "Project Finance", "Treasury Management"],
-      image:
-        "https://i.pinimg.com/736x/20/0f/f0/200ff087e3bee755914e6be7daccea8c.jpg?auto=compress&cs=tinysrgb&w=600",
-      color: "accent",
-    },
-    {
-      icon: Cpu,
-      title: "Digital & FinTech Services",
-      description: "Technology-driven services like UPI, wallets, online loans, robo-advisors, and blockchain that make finance faster and easier.",
-      features: ["Digital Payments", "Online Lending Platforms", "Robo-Advisors", "Cryptocurrency & Blockchain"],
-      image:
-        "https://i.pinimg.com/736x/54/dc/27/54dc2772c8c067fe73e688881d8f1407.jpg?auto=compress&cs=tinysrgb&w=600",
-      color: "accent",
-    },
+    }
+    // {
+    //   icon: Briefcase,
+    //   title: "Corporate Finance",
+    //   description: "Supports businesses with mergers, acquisitions, IPOs, project funding, and strategic cash flow management.",
+    //   features: ["Mergers & Acquisitions", "IPO (Initial Public Offering)", "Project Finance", "Treasury Management"],
+    //   image:
+    //     "https://i.pinimg.com/736x/20/0f/f0/200ff087e3bee755914e6be7daccea8c.jpg?auto=compress&cs=tinysrgb&w=600",
+    //   color: "accent",
+    // },
+    // {
+    //   icon: Cpu,
+    //   title: "Digital & FinTech Services",
+    //   description: "Technology-driven services like UPI, wallets, online loans, robo-advisors, and blockchain that make finance faster and easier.",
+    //   features: ["Digital Payments", "Online Lending Platforms", "Robo-Advisors", "Cryptocurrency & Blockchain"],
+    //   image:
+    //     "https://i.pinimg.com/736x/54/dc/27/54dc2772c8c067fe73e688881d8f1407.jpg?auto=compress&cs=tinysrgb&w=600",
+    //   color: "accent",
+    // },
   ];
 
   const getColorClasses = (color: string) => {
@@ -224,7 +224,7 @@ const Services: React.FC = () => {
                       <img
                         src={service.image}
                         alt={`${service.title} illustration`}
-                        className="rounded-2xl shadow-2xl w-full h-[400px] object-cover"
+                        className=" shadow-2xl w-full h-[350px] object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
                     </div>
